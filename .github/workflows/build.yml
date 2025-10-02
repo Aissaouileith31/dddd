@@ -1,15 +1,14 @@
-name: Build APK Onlyq
+name: Build APK Only (Auto)
 
 on:
 push:
 branches:
-- master
 - main
+- master
 pull_request:
 branches:
-- master
 - main
-workflow_dispatch:
+- master
 
 env:
 BUILD_NUMBER: 1
@@ -49,7 +48,7 @@ uses: actions/checkout@v4
 - name: Flutter pub get
   run: flutter pub get
 
-- name: Flet Build APK
+- name: Flet Build APK (Release)
   run: |
     flutter config --no-analytics
     flet build apk --verbose --build-number=$BUILD_NUMBER --build-version=$BUILD_VERSION
@@ -57,8 +56,8 @@ uses: actions/checkout@v4
 - name: Upload APK Artifact
   uses: actions/upload-artifact@v4.3.4
   with:
-    name: apk-build-artifact
+    name: apk-release
     path: build/apk
     if-no-files-found: warn
-    overwrite: false
+    overwrite: true
 ```
