@@ -1,4 +1,4 @@
-name: Build APK Only
+name: Build APK Onlyq
 
 on:
 push:
